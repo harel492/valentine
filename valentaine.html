@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <title>❤️</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9ecb, #ff4d88);
+        color: white;
+      }
+
+      h1 {
+        margin-top: 100px;
+        font-size: 45px;
+      }
+
+      button {
+        padding: 15px 40px;
+        font-size: 22px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        position: absolute;
+        transition: transform 0.2s;
+      }
+
+      #yesBtn {
+        background-color: #ff0066;
+        left: 40%;
+        top: 300px;
+      }
+
+      #noBtn {
+        background-color: #444;
+        left: 55%;
+        top: 300px;
+      }
+
+      #message {
+        display: none;
+        margin-top: 50px;
+        font-size: 30px;
+      }
+
+      .heart {
+        position: absolute;
+        color: pink;
+        animation: fall linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="q">מאמי תהיי הדייט שלי ליום האהבה❤️</h1>
+
+    <button id="yesBtn">כן😍</button>
+    <button id="noBtn">אני קקה🙄</button>
+
+    <div id="message">
+      <h2>אין ידעתי שתסכימי🥰</h2>
+      <img src="/df80414b-67ec-4130-81a0-633d2249f61a.jfif" width="350" />
+    </div>
+
+    <audio
+      id="music"
+      src="/Mac Miller Congratulations but its only that good part (4K).mp3"
+    ></audio>
+
+    <script>
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      const message = document.getElementById("message");
+      const music = document.getElementById("music");
+      const q = document.getElementById("q");
+
+      noBtn.addEventListener("mouseover", function () {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+        noBtn.style.transform = "scale(1.2)";
+        setTimeout(() => (noBtn.style.transform = "scale(1)"), 200);
+      });
+
+      yesBtn.addEventListener("click", function () {
+        message.style.display = "block";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+        q.style.display = "none";
+        music.play();
+        createConfetti();
+      });
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+
+      setInterval(createHeart, 300);
+
+      function createConfetti() {
+        for (let i = 0; i < 50; i++) {
+          createHeart();
+        }
+      }
+    </script>
+  </body>
+</html>
